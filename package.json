@@ -1,0 +1,25 @@
+{
+  "name": "reactinversify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "webpack -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/flux": "0.0.28",
+    "@types/inversify": "^2.0.28",
+    "@types/node": "^6.0.33",
+    "eventemitter": "^0.3.3",
+    "events": "^1.1.1",
+    "flux": "^2.1.1",
+    "reflect-metadata": "^0.1.8",
+    "ts-loader": "^0.8.2",
+    "typescript": "^2.0.0",
+    "webpack": "^1.13.1"
+  }
+}
