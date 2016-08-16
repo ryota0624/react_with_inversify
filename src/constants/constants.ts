@@ -1,3 +1,3 @@
 export const todoActionType = {
-  add: Symbol("add")
+  add: "add"
 }
