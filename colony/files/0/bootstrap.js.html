@@ -1,0 +1,10 @@
+<h1>bootstrap.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> ReactDom = require(<span class="string">"react-dom"</span>);
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> top_1 = require(<span class="string">"./component/top"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span> {</span>
+    ReactDom.render(React.createElement(top_1.Top, <span class="literal">null</span>), document.getElementById(<span class="string">"app"</span>));
+}
+exports.boot = boot;
+</code></pre>

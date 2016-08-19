@@ -1,0 +1,13 @@
+<h1>inversifyConfig.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> inversify_1 = require(<span class="string">"inversify"</span>);
+<span class="keyword">var</span> TodoStore_1 = require(<span class="string">"./store/TodoStore"</span>);
+<span class="keyword">var</span> dispatcher_1 = require(<span class="string">"./dispatcher"</span>);
+exports.kernel = <span class="keyword">new</span> inversify_1.Kernel();
+exports.TYPES = {
+    Dispatcher: <span class="string">"Dispatcher"</span>,
+    TodoStore: <span class="string">"TodoStore"</span>
+};
+exports.kernel.bind(exports.TYPES.Dispatcher).to(dispatcher_1.AppDispatcher).inSingletonScope();
+exports.kernel.bind(exports.TYPES.TodoStore).to(TodoStore_1.TodoStore).inSingletonScope();
+</code></pre>

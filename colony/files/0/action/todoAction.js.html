@@ -1,0 +1,11 @@
+<h1>todoAction.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> constants_1 = require(<span class="string">"../constants/constants"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">addTodo</span><span class="params">(todo)</span> {</span>
+    <span class="keyword">return</span> {
+        todo: todo,
+        type: constants_1.todoActionType.add
+    };
+}
+exports.addTodo = addTodo;
+</code></pre>

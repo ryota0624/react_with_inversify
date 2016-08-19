@@ -1,0 +1,33 @@
+<h1>top.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> list_1 = require(<span class="string">"./Todo/list"</span>);
+<span class="keyword">var</span> form_1 = require(<span class="string">"./Todo/form"</span>);
+<span class="keyword">var</span> inversifyConfig_1 = require(<span class="string">"../inversifyConfig"</span>);
+<span class="keyword">var</span> Top = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(Top, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">Top</span><span class="params">(props)</span> {</span>
+        _super.call(<span class="keyword">this</span>, props);
+        <span class="keyword">this</span>.todoStore = inversifyConfig_1.kernel.get(inversifyConfig_1.TYPES.TodoStore);
+        <span class="keyword">this</span>.onChangeStore = <span class="keyword">this</span>.onChangeStore.bind(<span class="keyword">this</span>);
+    }
+    Top.prototype.onChangeStore = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">this</span>.forceUpdate();
+    };
+    Top.prototype.componentDidMount = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">this</span>.todoStore.addChangeListener(<span class="keyword">this</span>.onChangeStore);
+    };
+    Top.prototype.render = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> (React.createElement(<span class="string">"div"</span>, <span class="literal">null</span>, 
+            React.createElement(list_1.List, {todos: <span class="keyword">this</span>.todoStore.findAll()}), 
+            React.createElement(form_1.TodoForm, <span class="literal">null</span>)));
+    };
+    <span class="keyword">return</span> Top;
+}(React.Component));
+exports.Top = Top;
+</code></pre>

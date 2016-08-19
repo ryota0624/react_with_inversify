@@ -1,0 +1,67 @@
+<h1>TodoStore.js</h1>
+<pre><code class="lang-js"><span class="comment">///&lt;reference path="../../../node_modules/@types/node/index.d.ts" /></span>
+<span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> __decorate = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__decorate) || <span class="function"><span class="keyword">function</span> <span class="params">(decorators, target, key, desc)</span> {</span>
+    <span class="keyword">var</span> c = arguments.length, r = c &lt; <span class="number">3</span> ? target : desc === <span class="literal">null</span> ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> Reflect === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> Reflect.decorate === <span class="string">"function"</span>) r = Reflect.decorate(decorators, target, key, desc);
+    <span class="keyword">else</span> <span class="keyword">for</span> (<span class="keyword">var</span> i = decorators.length - <span class="number">1</span>; i >= <span class="number">0</span>; i--) <span class="keyword">if</span> (d = decorators[i]) r = (c &lt; <span class="number">3</span> ? d(r) : c > <span class="number">3</span> ? d(target, key, r) : d(target, key)) || r;
+    <span class="keyword">return</span> c > <span class="number">3</span> &amp;&amp; r &amp;&amp; Object.defineProperty(target, key, r), r;
+};
+<span class="keyword">var</span> __metadata = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__metadata) || <span class="function"><span class="keyword">function</span> <span class="params">(k, v)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> Reflect === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> Reflect.metadata === <span class="string">"function"</span>) <span class="keyword">return</span> Reflect.metadata(k, v);
+};
+<span class="keyword">var</span> __param = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__param) || <span class="function"><span class="keyword">function</span> <span class="params">(paramIndex, decorator)</span> {</span>
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(target, key)</span> {</span> decorator(target, key, paramIndex); }
+};
+<span class="keyword">var</span> Event = require(<span class="string">"events"</span>);
+<span class="keyword">var</span> constants_1 = require(<span class="string">"../constants/constants"</span>);
+<span class="keyword">var</span> inversify_1 = require(<span class="string">"inversify"</span>);
+<span class="keyword">var</span> inversifyConfig_1 = require(<span class="string">"../inversifyConfig"</span>);
+<span class="keyword">var</span> CHANGE = <span class="string">"change"</span>;
+inversify_1.injectable()(Event.EventEmitter);
+<span class="keyword">var</span> TodoStore = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(TodoStore, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">TodoStore</span><span class="params">(dispatcher)</span> {</span>
+        _super.call(<span class="keyword">this</span>);
+        <span class="keyword">this</span>.dispatcher = dispatcher;
+        <span class="keyword">this</span>.state = [];
+        <span class="keyword">this</span>.dispatcher.register(<span class="keyword">this</span>.register.bind(<span class="keyword">this</span>));
+    }
+    TodoStore.prototype.findAll = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> <span class="keyword">this</span>.state;
+    };
+    TodoStore.prototype.findById = <span class="function"><span class="keyword">function</span> <span class="params">(id)</span> {</span>
+        <span class="keyword">var</span> todo = <span class="keyword">this</span>.state.find(<span class="function"><span class="keyword">function</span> <span class="params">(todo)</span> {</span> <span class="keyword">return</span> todo.id == id; });
+        <span class="keyword">return</span> todo ? [todo] : [];
+    };
+    TodoStore.prototype.emitChange = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">this</span>.emit(CHANGE);
+    };
+    TodoStore.prototype.addChangeListener = <span class="function"><span class="keyword">function</span> <span class="params">(fn)</span> {</span>
+        <span class="keyword">this</span>.addListener(CHANGE, fn);
+    };
+    TodoStore.prototype.register = <span class="function"><span class="keyword">function</span> <span class="params">(action)</span> {</span>
+        <span class="keyword">switch</span> (action.type) {
+            <span class="keyword">case</span> constants_1.todoActionType.add: {
+                <span class="keyword">this</span>.state = add(<span class="keyword">this</span>.state, action.todo);
+                <span class="keyword">this</span>.emitChange();
+            }
+        }
+    };
+    TodoStore = __decorate([
+        inversify_1.injectable(),
+        __param(<span class="number">0</span>, inversify_1.inject(inversifyConfig_1.TYPES.Dispatcher)), 
+        __metadata(<span class="string">'design:paramtypes'</span>, [Object])
+    ], TodoStore);
+    <span class="keyword">return</span> TodoStore;
+}(Event.EventEmitter));
+exports.TodoStore = TodoStore;
+<span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(state, todo)</span> {</span>
+    <span class="keyword">return</span> state.concat(todo);
+}
+</code></pre>

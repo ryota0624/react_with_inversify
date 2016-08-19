@@ -1,20 +1,15 @@
-///<reference path="../../node_modules/@types/node/index.d.ts" />
+///<reference path="../../../node_modules/@types/node/index.d.ts" />
 
 import * as Event from "events";
 import { Todo } from "../model/Todo";
 import { todoActionType } from "../constants/constants";
-import { AppDispatcher, dispatcherPayload } from "../dispatcher";
-
-import { injectable, inject } from "inversify";
+import { AppDispatcher, dispatcherPayload, dispatcher } from "../dispatcher";
 
 const CHANGE = "change";
 
-injectable()(Event.EventEmitter);
-
-@injectable()
 export class TodoStore extends Event.EventEmitter {
-  protected state: Todo[] = [];
-  constructor(@inject(AppDispatcher) private dispatcher: AppDispatcher) {
+  private state: Todo[] = [];
+  constructor(private dispatcher: AppDispatcher) {
     super();
     this.dispatcher.register(this.register.bind(this));
   }
@@ -28,7 +23,7 @@ export class TodoStore extends Event.EventEmitter {
     return todo ? [todo] : [];
   }
 
-  emitChange() {
+  private emitChange() {
     this.emit(CHANGE);
   }
 
@@ -36,7 +31,7 @@ export class TodoStore extends Event.EventEmitter {
     this.addListener(CHANGE, fn);
   }
 
-  register(action: dispatcherPayload) {
+  private register(action: dispatcherPayload) {
     switch (action.type) {
       case todoActionType.add: {
         this.state = add(this.state, action.todo);
@@ -49,3 +44,5 @@ export class TodoStore extends Event.EventEmitter {
 function add(state: Todo[], todo: Todo):Todo[] {
   return state.concat(todo);
 }
+
+export const todoStore = new TodoStore(dispatcher);

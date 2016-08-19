@@ -1,0 +1,11 @@
+<h1>addTodoCreator.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> todoAction_1 = require(<span class="string">"../action/todoAction"</span>);
+<span class="keyword">var</span> Todo_1 = require(<span class="string">"../model/Todo"</span>);
+<span class="keyword">var</span> inversifyConfig_1 = require(<span class="string">"../inversifyConfig"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">addTodoRequest</span><span class="params">(text)</span> {</span>
+    <span class="keyword">var</span> todo = <span class="keyword">new</span> Todo_1.Todo(text, <span class="keyword">new</span> Date, Math.floor(Math.random() * <span class="number">100</span>));
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> <span class="keyword">return</span> inversifyConfig_1.kernel.get(inversifyConfig_1.TYPES.Dispatcher).dispatch(todoAction_1.addTodo(todo)); }, <span class="number">100</span>);
+}
+exports.addTodoRequest = addTodoRequest;
+</code></pre>

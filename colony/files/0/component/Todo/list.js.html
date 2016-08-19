@@ -1,0 +1,22 @@
+<h1>list.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> item_1 = require(<span class="string">"./item"</span>);
+<span class="keyword">var</span> List = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(List, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">List</span><span class="params">()</span> {</span>
+        _super.apply(<span class="keyword">this</span>, arguments);
+    }
+    List.prototype.render = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">var</span> todos = <span class="keyword">this</span>.props.todos;
+        <span class="keyword">return</span> (React.createElement(<span class="string">"ul"</span>, <span class="literal">null</span>, todos.map(<span class="function"><span class="keyword">function</span> <span class="params">(todo)</span> {</span> <span class="keyword">return</span> React.createElement(item_1.Item, {key: todo.id, todo: todo}); })));
+    };
+    <span class="keyword">return</span> List;
+}(React.Component));
+exports.List = List;
+</code></pre>

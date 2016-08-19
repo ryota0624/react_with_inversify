@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "webpack -w"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "compile": "webpack -w",
+    "compile-test": "tsc -p src/spec; jasmine",
+    "clean": "rm -rf ./src/**/*.js"
   },
   "keywords": [],
   "author": "",

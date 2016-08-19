@@ -1,0 +1,21 @@
+<h1>item.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> Item = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(Item, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">Item</span><span class="params">(props)</span> {</span>
+        _super.call(<span class="keyword">this</span>, props);
+    }
+    Item.prototype.render = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">var</span> todo = <span class="keyword">this</span>.props.todo;
+        <span class="keyword">return</span> (React.createElement(<span class="string">"li"</span>, {key: String(todo.id)}, todo.text));
+    };
+    <span class="keyword">return</span> Item;
+}(React.Component));
+exports.Item = Item;
+</code></pre>
