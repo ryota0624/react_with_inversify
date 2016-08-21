@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Item } from "./item";
-import { addTodoRequest } from "../../actionCreator/addTodoCreator";
 
-export class TodoForm extends React.Component<any, any> {
+export class TodoForm extends React.Component<{addTodo: (string) => void}, {text: string}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +12,7 @@ export class TodoForm extends React.Component<any, any> {
     return (
       <span>
         <input value={this.state.text} onChange={this.onChange.bind(this)}/>
-        <button onClick={this.onSubmit.bind(this)} />
+        <button onClick={this.onSubmit.bind(this)}>btn</button>
       </span>
     )
   }
@@ -21,6 +20,12 @@ export class TodoForm extends React.Component<any, any> {
     this.setState({ text: event.target.value });
   }
   onSubmit() {
-    addTodoRequest(this.state.text);
+    const { text } = this.state
+    if (!(text.length > 0)) {
+      alert("fail")
+      return
+    }
+    this.props.addTodo(text);
+    this.setState({ text: "" })
   }
 }

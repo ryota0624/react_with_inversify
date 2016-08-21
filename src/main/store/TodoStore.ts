@@ -31,6 +31,10 @@ export class TodoStore extends Event.EventEmitter {
     this.addListener(CHANGE, fn);
   }
 
+  removeChangeListener(fn: (any) => any) {
+    this.removeListener(CHANGE, fn);
+  }
+
   private register(action: dispatcherPayload) {
     switch (action.type) {
       case todoActionType.add: {

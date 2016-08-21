@@ -3,10 +3,16 @@ import { TodoStore, todoStore } from "../store/TodoStore";
 import { List } from "./Todo/list";
 import { TodoForm } from "./Todo/form";
 
+import { todoActionCreator,TodoActionCreator } from "../actionCreator/TodoCreator";
+
 export class Top extends React.Component<{
-  todoStore?: TodoStore
+  todoStore?: TodoStore,
+  todoActionCreator?: TodoActionCreator,
 }, any> {
-  public static defaultProps: {todoStore:TodoStore} = {todoStore: todoStore}
+  public static defaultProps = {
+    todoStore: todoStore,
+    todoActionCreator: todoActionCreator
+  }
   constructor(props) {
     super(props);
     this.onChangeStore = this.onChangeStore.bind(this);
@@ -17,11 +23,14 @@ export class Top extends React.Component<{
   componentDidMount() {
     this.props.todoStore!.addChangeListener(this.onChangeStore);
   }
+  addTodo(text: string) {
+    this.props.todoActionCreator!.add(text)
+  }
   render() {
     return (
       <div>
         <List todos={this.props.todoStore!.findAll()}/>
-        <TodoForm />
+        <TodoForm addTodo={this.addTodo.bind(this)}/>
       </div>
     )
   }
