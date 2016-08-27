@@ -1,9 +1,10 @@
-///<reference path="../../../node_modules/@types/node/index.d.ts" />
+/// <reference path="../../../node_modules/@types/node/index.d.ts" />
 
 import * as Event from "events";
 import { Todo } from "../model/Todo";
 import { todoActionType } from "../constants/constants";
 import { AppDispatcher, dispatcherPayload, dispatcher } from "../dispatcher";
+import * as monad from "tsmonad";
 
 const CHANGE = "change";
 
@@ -18,9 +19,9 @@ export class TodoStore extends Event.EventEmitter {
     return this.state;
   }
 
-  findById(id: number): Todo[] {
+  findById(id: number) :monad.Maybe<Todo> {
     const todo = this.state.find((todo) => todo.id == id);
-    return todo ? [todo] : [];
+    return todo ? monad.Maybe.just<Todo>(todo) : monad.Maybe.nothing<Todo>();
   }
 
   private emitChange() {

@@ -1,4 +1,4 @@
 export class Todo {
-  constructor(readonly text: string,readonly timestamp: Date, readonly id: number) {
+  constructor(public text: string,public timestamp: Date, public id: number) {
   }
 }

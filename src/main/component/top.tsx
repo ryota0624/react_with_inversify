@@ -9,7 +9,7 @@ export class Top extends React.Component<{
   todoStore?: TodoStore,
   todoActionCreator?: TodoActionCreator,
 }, any> {
-  public static defaultProps = {
+  static defaultProps = {
     todoStore: todoStore,
     todoActionCreator: todoActionCreator
   }

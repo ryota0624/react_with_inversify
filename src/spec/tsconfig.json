@@ -8,7 +8,8 @@
         "strictNullChecks": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "outDir": "./js"
+        "outDir": "../js",
+        "allowJs": true
     },
     "exclude": [
         "node_modules"
