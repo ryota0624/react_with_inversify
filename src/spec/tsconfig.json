@@ -1,17 +1,17 @@
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": false,
-        "sourceMap": false,
-        "jsx": "react",
-        "strictNullChecks": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "outDir": "../js",
-        "allowJs": true
-    },
-    "exclude": [
-        "node_modules"
-    ]
-}
+// {
+//     "compilerOptions": {
+//         "module": "commonjs",
+//         "target": "es6",
+//         "noImplicitAny": false,
+//         "sourceMap": false,
+//         "jsx": "react",
+//         "strictNullChecks": true,
+//         "emitDecoratorMetadata": true,
+//         "experimentalDecorators": true,
+//         "outDir": "../js",
+//         "allowJs": true
+//     },
+//     "exclude": [
+//         "node_modules"
+//     ]
+// }
