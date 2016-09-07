@@ -1,11 +1,11 @@
 module.exports = {
-  entry: './src/main/app.ts',
+  entry: './src/main/app.js',
   output: {
-    filename: './bundle/bundle.js'
+    filename: './bundle/bundle.js.withOutTsloader'
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.webpack.js', '.ts', '.tsx', '.js']
+    extensions: ['', '.webpack.js', '.js']
   },
   module: {
     loaders: [
@@ -16,7 +16,7 @@ module.exports = {
         exclude: /node_modules/
       },{
         test: /\.js(x)?$/,
-        loader: 'babel?presets[]=es2015',
+        loader: 'babel',
         exclude: /node_modules/
       }
     ]
