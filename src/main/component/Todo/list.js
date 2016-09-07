@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.List = undefined;
 
@@ -9,13 +9,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require("react");
 
-var _react2 = _interopRequireDefault(_react);
-
-var _Todo = require("../../model/Todo");
+var React = _interopRequireWildcard(_react);
 
 var _item = require("./item");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -24,28 +22,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var List = exports.List = function (_React$Component) {
-  _inherits(List, _React$Component);
+    _inherits(List, _React$Component);
 
-  function List() {
-    _classCallCheck(this, List);
+    function List() {
+        _classCallCheck(this, List);
 
-    return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).apply(this, arguments));
-  }
-
-  _createClass(List, [{
-    key: "render",
-    value: function render() {
-      var todos = this.props.todos;
-
-      return _react2.default.createElement(
-        "ul",
-        null,
-        todos.map(function (todo) {
-          return _react2.default.createElement(_item.Item, { key: todo.id, todo: todo });
-        })
-      );
+        return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).apply(this, arguments));
     }
-  }]);
 
-  return List;
-}(_react2.default.Component);
+    _createClass(List, [{
+        key: "render",
+        value: function render() {
+            var todos = this.props.todos;
+
+            return React.createElement(
+                "ul",
+                null,
+                todos.map(function (todo) {
+                    return React.createElement(_item.Item, { key: todo.id, todo: todo });
+                })
+            );
+        }
+    }]);
+
+    return List;
+}(React.Component);

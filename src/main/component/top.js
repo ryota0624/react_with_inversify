@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.Top = undefined;
 
@@ -9,7 +9,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require("react");
 
-var _react2 = _interopRequireDefault(_react);
+var React = _interopRequireWildcard(_react);
 
 var _TodoStore = require("../store/TodoStore");
 
@@ -19,7 +19,7 @@ var _form = require("./Todo/form");
 
 var _TodoCreator = require("../actionCreator/TodoCreator");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,48 +28,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Top = exports.Top = function (_React$Component) {
-  _inherits(Top, _React$Component);
+    _inherits(Top, _React$Component);
 
-  function Top(props) {
-    _classCallCheck(this, Top);
+    function Top(props) {
+        _classCallCheck(this, Top);
 
-    var _this = _possibleConstructorReturn(this, (Top.__proto__ || Object.getPrototypeOf(Top)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Top.__proto__ || Object.getPrototypeOf(Top)).call(this, props));
 
-    _this.onChangeStore = _this.onChangeStore.bind(_this);
-    return _this;
-  }
-
-  _createClass(Top, [{
-    key: "onChangeStore",
-    value: function onChangeStore() {
-      this.forceUpdate();
+        _this.onChangeStore = _this.onChangeStore.bind(_this);
+        return _this;
     }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.todoStore.addChangeListener(this.onChangeStore);
-    }
-  }, {
-    key: "addTodo",
-    value: function addTodo(text) {
-      this.props.todoActionCreator.add(text);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(_list.List, { todos: this.props.todoStore.findAll() }),
-        _react2.default.createElement(_form.TodoForm, { addTodo: this.addTodo.bind(this) })
-      );
-    }
-  }]);
 
-  return Top;
-}(_react2.default.Component);
+    _createClass(Top, [{
+        key: "onChangeStore",
+        value: function onChangeStore() {
+            this.forceUpdate();
+        }
+    }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.props.todoStore.addChangeListener(this.onChangeStore);
+        }
+    }, {
+        key: "addTodo",
+        value: function addTodo(text) {
+            this.props.todoActionCreator.add(text);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(_list.List, { todos: this.props.todoStore.findAll() }),
+                React.createElement(_form.TodoForm, { addTodo: this.addTodo.bind(this) })
+            );
+        }
+    }]);
+
+    return Top;
+}(React.Component);
 
 Top.defaultProps = {
-  todoStore: _TodoStore.todoStore,
-  todoActionCreator: _TodoCreator.todoActionCreator
+    todoStore: _TodoStore.todoStore,
+    todoActionCreator: _TodoCreator.todoActionCreator
 };

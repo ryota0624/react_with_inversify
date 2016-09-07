@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.Item = undefined;
 
@@ -9,11 +9,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require("react");
 
-var _react2 = _interopRequireDefault(_react);
+var React = _interopRequireWildcard(_react);
 
-var _Todo = require("../../model/Todo");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -22,26 +20,26 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Item = exports.Item = function (_React$Component) {
-  _inherits(Item, _React$Component);
+    _inherits(Item, _React$Component);
 
-  function Item(props) {
-    _classCallCheck(this, Item);
+    function Item(props) {
+        _classCallCheck(this, Item);
 
-    return _possibleConstructorReturn(this, (Item.__proto__ || Object.getPrototypeOf(Item)).call(this, props));
-  }
-
-  _createClass(Item, [{
-    key: "render",
-    value: function render() {
-      var todo = this.props.todo;
-
-      return _react2.default.createElement(
-        "li",
-        { key: String(todo.id) },
-        todo.text
-      );
+        return _possibleConstructorReturn(this, (Item.__proto__ || Object.getPrototypeOf(Item)).call(this, props));
     }
-  }]);
 
-  return Item;
-}(_react2.default.Component);
+    _createClass(Item, [{
+        key: "render",
+        value: function render() {
+            var todo = this.props.todo;
+
+            return React.createElement(
+                "li",
+                { key: String(todo.id) },
+                todo.text
+            );
+        }
+    }]);
+
+    return Item;
+}(React.Component);
