@@ -1,0 +1,13 @@
+{
+  "name": "reactinversify",
+  "dependencies": {
+    "react": "registry:npm/react#15.0.1+20160601175240"
+  },
+  "globalDependencies": {
+    "fbemitter": "registry:dt/fbemitter#2.0.0+20160618175531",
+    "flux": "registry:dt/flux#0.0.0+20160618175531",
+    "immutable": "registry:dt/immutable#3.8.1+20160608070634",
+    "node": "registry:env/node#6.0.0+20160825160117",
+    "react-bootstrap": "registry:dt/react-bootstrap#0.0.0+20160806072414"
+  }
+}
