@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es6",
         "sourceMap": false,
-        "jsx": "react",
+        "jsx": "preserve",
         "allowJs": true,
         "strictNullChecks": true
     },
