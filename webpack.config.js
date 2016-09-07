@@ -1,11 +1,11 @@
 module.exports = {
-  entry: './src/babel/app.js',
+  entry: './src/main/app.js',
   output: {
     filename: './bundle/bundle.js.withOutTsloaderBabel'
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.webpack.js', '.js', '.jsx']
+    extensions: ['', '.webpack.js', '.js', '.jsx', '.ts', '.tsx']
   },
   module: {
     loaders: [

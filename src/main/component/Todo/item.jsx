@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { Todo } from "../../model/Todo";
 
-export class Item extends React.Component<{ todo: Todo }, any> {
+export class Item extends React.Component {
   constructor(props) {
     super(props);
   }

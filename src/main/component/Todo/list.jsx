@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { Todo } from "../../model/Todo";
 import { Item } from "./item";
-export class List extends React.Component<{todos: Todo[]}, any> {
+export class List extends React.Component {
   render() {
     const {todos} = this.props; 
     return (

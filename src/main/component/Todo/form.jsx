@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { Item } from "./item";
 
-export class TodoForm extends React.Component<{addTodo: (string) => void}, {text: string}> {
+export class TodoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ export class TodoForm extends React.Component<{addTodo: (string) => void}, {text
       </span>
     )
   }
-  onChange(event: any) {
+  onChange(event) {
     this.setState({ text: event.target.value });
   }
   onSubmit() {
