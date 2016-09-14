@@ -1,6 +1,6 @@
 import GetTodoListUsecase from "../../../usecase/Todo/getTodoList";
-import AddTodoUsecase from "../../../usecase/Todo/addTodo";
-
+import AddTodoUsecase, {AddTodoUsecaseInput, AddTodoUsecaseOutput} from "../../../usecase/Todo/addTodo";
+import { Controller } from "../controller";
 import TodoRepository, { todoRepository } from "../../../adaptor/repository/TodoRepositoryOnMemory";
 import * as React from "react";
 import * as I from "immutable";
@@ -14,7 +14,7 @@ interface State {
   todoList?: Array<TodoDto>,
 }
 
-export abstract class IndexPageController extends React.Component<Props, State> {
+export abstract class IndexPageController extends Controller<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,8 +30,11 @@ export abstract class IndexPageController extends React.Component<Props, State> 
   }
 
   addTodo(name: string): void {
-    (name)
-    new AddTodoUsecase(todoRepository).call({ name });
+    const uc = new AddTodoUsecase(todoRepository);
+    const ucc = uc.compose(uc).compose(uc);
+    this.runUsecase<[[AddTodoUsecaseInput, AddTodoUsecaseInput], AddTodoUsecaseInput]
+      , [[AddTodoUsecaseOutput, AddTodoUsecaseOutput], AddTodoUsecaseOutput]>
+      (ucc, [[{ name }, { name }], {name}])
   }
 
   changeHandler() {
