@@ -1,0 +1,37 @@
+<h1>form.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> TodoForm = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(TodoForm, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">TodoForm</span><span class="params">(props)</span> {</span>
+        _super.call(<span class="keyword">this</span>, props);
+        <span class="keyword">this</span>.state = {
+            text: <span class="string">""</span>
+        };
+    }
+    TodoForm.prototype.render = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> (React.createElement(<span class="string">"span"</span>, <span class="literal">null</span>, 
+            React.createElement(<span class="string">"input"</span>, {value: <span class="keyword">this</span>.state.text, onChange: <span class="keyword">this</span>.onChange.bind(<span class="keyword">this</span>)}), 
+            React.createElement(<span class="string">"button"</span>, {onClick: <span class="keyword">this</span>.onSubmit.bind(<span class="keyword">this</span>)}, <span class="string">"btn"</span>)));
+    };
+    TodoForm.prototype.onChange = <span class="function"><span class="keyword">function</span> <span class="params">(event)</span> {</span>
+        <span class="keyword">this</span>.setState({ text: event.target.value });
+    };
+    TodoForm.prototype.onSubmit = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">var</span> text = <span class="keyword">this</span>.state.text;
+        <span class="keyword">if</span> (!(text.length > <span class="number">0</span>)) {
+            alert(<span class="string">"fail"</span>);
+            <span class="keyword">return</span>;
+        }
+        <span class="keyword">this</span>.props.addTodo(text);
+        <span class="keyword">this</span>.setState({ text: <span class="string">""</span> });
+    };
+    <span class="keyword">return</span> TodoForm;
+}(React.Component));
+exports.TodoForm = TodoForm;
+</code></pre>

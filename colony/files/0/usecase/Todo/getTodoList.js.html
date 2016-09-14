@@ -1,0 +1,14 @@
+<h1>getTodoList.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> GetTodoListUsecase = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">GetTodoListUsecase</span><span class="params">(todoRepository)</span> {</span>
+        <span class="keyword">this</span>.todoRepository = todoRepository;
+    }
+    GetTodoListUsecase.prototype.call = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> <span class="keyword">this</span>.todoRepository.findAll();
+    };
+    <span class="keyword">return</span> GetTodoListUsecase;
+}());
+Object.defineProperty(exports, <span class="string">"__esModule"</span>, { value: <span class="literal">true</span> });
+exports.<span class="keyword">default</span> = GetTodoListUsecase;
+</code></pre>

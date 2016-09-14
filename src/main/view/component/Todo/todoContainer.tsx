@@ -10,6 +10,7 @@ export class Top extends IndexPageController {
     super(props);
   }
   componentDidMount() {
+    this.doC();
     this.getTodoList();
     this.changeHandler();
   }

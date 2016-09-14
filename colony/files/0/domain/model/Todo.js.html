@@ -1,0 +1,21 @@
+<h1>Todo.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> name_1 = require(<span class="string">"../valueObject/Todo/name"</span>);
+<span class="keyword">var</span> Todo = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">Todo</span><span class="params">(name, id)</span> {</span>
+        <span class="keyword">this</span>.name = name;
+        <span class="keyword">this</span>.id = id;
+    }
+    Todo.prototype.setName = <span class="function"><span class="keyword">function</span> <span class="params">(name)</span> {</span>
+        <span class="keyword">var</span> newName = <span class="keyword">new</span> name_1.<span class="keyword">default</span>(name);
+        <span class="keyword">return</span> <span class="keyword">new</span> Todo(newName, <span class="keyword">this</span>.id);
+    };
+    <span class="keyword">return</span> Todo;
+}());
+Object.defineProperty(exports, <span class="string">"__esModule"</span>, { value: <span class="literal">true</span> });
+exports.<span class="keyword">default</span> = Todo;
+<span class="function"><span class="keyword">function</span> <span class="title">todoFactory</span><span class="params">(props)</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">new</span> Todo(<span class="keyword">new</span> name_1.<span class="keyword">default</span>(props.name), Math.random());
+}
+exports.todoFactory = todoFactory;
+</code></pre>

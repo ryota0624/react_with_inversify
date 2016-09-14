@@ -3,12 +3,17 @@ import * as I from "immutable";
 import Todo from "../../domain/model/Todo";
 import { TodoRepository } from "../../domain/repository/TodoRepository";
 
-export interface Input {}
-export type Output = Promise<I.List<Todo>>
+export interface GetTodoListUsecaseInput { }
+export type GetTodoListUsecaseOutput = Promise<I.List<Todo>>
+export interface GetTodoListUsecaseDeps {
+  todoRepository: TodoRepository
+}
 
-export default class GetTodoListUsecase implements Usecase<null, Output> {
-  constructor(private todoRepository: TodoRepository) {}
-  call(): Output {
-    return this.todoRepository.findAll();
+export default class GetTodoListUsecase extends Usecase<GetTodoListUsecaseDeps, GetTodoListUsecaseInput, GetTodoListUsecaseOutput> {
+  constructor(readonly deps: GetTodoListUsecaseDeps) {
+    super();
+  }
+  call(input: GetTodoListUsecaseInput): GetTodoListUsecaseOutput {
+    return this.deps.todoRepository.findAll();
   }
 }

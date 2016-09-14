@@ -1,0 +1,42 @@
+<h1>indexPage.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span> <span class="params">(d, b)</span> {</span>
+    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];
+    <span class="function"><span class="keyword">function</span> <span class="title">__</span><span class="params">()</span> {</span> <span class="keyword">this</span>.constructor = d; }
+    d.prototype = b === <span class="literal">null</span> ? Object.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());
+};
+<span class="keyword">var</span> getTodoList_1 = require(<span class="string">"../../../usecase/Todo/getTodoList"</span>);
+<span class="keyword">var</span> addTodo_1 = require(<span class="string">"../../../usecase/Todo/addTodo"</span>);
+<span class="keyword">var</span> TodoRepositoryOnMemory_1 = require(<span class="string">"../../../adaptor/repository/TodoRepositoryOnMemory"</span>);
+<span class="keyword">var</span> React = require(<span class="string">"react"</span>);
+<span class="keyword">var</span> TodoDto_1 = require(<span class="string">"../../Dtos/TodoDto"</span>);
+<span class="keyword">var</span> IndexPageController = (<span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+    __extends(IndexPageController, _super);
+    <span class="function"><span class="keyword">function</span> <span class="title">IndexPageController</span><span class="params">(props)</span> {</span>
+        _super.call(<span class="keyword">this</span>, props);
+        <span class="keyword">this</span>.state = {
+            todoList: [],
+        };
+        <span class="keyword">this</span>.getTodoList = <span class="keyword">this</span>.getTodoList.bind(<span class="keyword">this</span>);
+    }
+    IndexPageController.prototype.getTodoList = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">var</span> _<span class="keyword">this</span> = <span class="keyword">this</span>;
+        <span class="keyword">new</span> getTodoList_1.<span class="keyword">default</span>(TodoRepositoryOnMemory_1.todoRepository).call().then(<span class="function"><span class="keyword">function</span> <span class="params">(todoList)</span> {</span>
+            <span class="keyword">var</span> todoDtoList = todoList.map(<span class="function"><span class="keyword">function</span> <span class="params">(todo)</span> {</span> <span class="keyword">return</span> TodoDto_1.todo2Dto(todo); }).toArray();
+            _<span class="keyword">this</span>.setState({ todoList: todoDtoList });
+        });
+    };
+    IndexPageController.prototype.addTodo = <span class="function"><span class="keyword">function</span> <span class="params">(name)</span> {</span>
+        (name);
+        <span class="keyword">new</span> addTodo_1.<span class="keyword">default</span>(TodoRepositoryOnMemory_1.todoRepository).call({ name: name });
+    };
+    IndexPageController.prototype.changeHandler = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        TodoRepositoryOnMemory_1.todoRepository.onSub(<span class="keyword">this</span>.getTodoList);
+    };
+    IndexPageController.prototype.removeHandler = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        TodoRepositoryOnMemory_1.todoRepository.removeSub(<span class="keyword">this</span>.getTodoList);
+    };
+    <span class="keyword">return</span> IndexPageController;
+}(React.Component));
+exports.IndexPageController = IndexPageController;
+</code></pre>

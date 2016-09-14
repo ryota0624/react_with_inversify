@@ -1,20 +1,23 @@
-import GetTodoListUsecase from "../../../usecase/Todo/getTodoList";
-import AddTodoUsecase from "../../../usecase/Todo/addTodo";
-
+import GetTodoListUsecase, {GetTodoListUsecaseDeps, GetTodoListUsecaseInput, GetTodoListUsecaseOutput} from "../../../usecase/Todo/getTodoList";
+import AddTodoUsecase, {AddTodoUsecaseDependency, AddTodoUsecaseInput, AddTodoUsecaseOutput} from "../../../usecase/Todo/addTodo";
+import { Usecase } from "../../../usecase/share/usecase";
 import TodoRepository, { todoRepository } from "../../../adaptor/repository/TodoRepositoryOnMemory";
 import * as React from "react";
 import * as I from "immutable";
 import Todo from "../../../domain/model/Todo";
 import { TodoDto, todo2Dto } from "../../Dtos/TodoDto";
+import { Controller } from "../controller";
 
-interface Props {
+// const usecase = Usecase.compose(new GetTodoListUsecase(todoRepository), new AddTodoUsecase(todoRepository));
+
+export interface Props {
 
 }
-interface State {
+export interface State {
   todoList?: Array<TodoDto>,
 }
 
-export abstract class IndexPageController extends React.Component<Props, State> {
+export abstract class IndexPageController extends Controller<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,15 +26,27 @@ export abstract class IndexPageController extends React.Component<Props, State> 
     this.getTodoList = this.getTodoList.bind(this);
   }
   getTodoList(): void {
-    new GetTodoListUsecase(todoRepository).call().then(todoList => {
+    this.usecaseRunner(GetTodoListUsecase, { todoRepository }, {}).then(todoList => {
       const todoDtoList = todoList.map(todo => todo2Dto(todo!)).toArray();
       this.setState({ todoList: todoDtoList });
     })
   }
 
+  doC() {
+    const composedUsecase = Usecase.compose(GetTodoListUsecase, AddTodoUsecase);
+    this.usecaseRunner<
+      [GetTodoListUsecaseDeps, AddTodoUsecaseDependency],
+      [GetTodoListUsecaseInput, AddTodoUsecaseInput],
+      [GetTodoListUsecaseOutput, GetTodoListUsecaseOutput]
+      >(composedUsecase,
+      [{ todoRepository }, { todoRepository }],
+      [{}, { name: "string" }]).forEach((i) => {
+        i.then((a) => console.log(a))
+      });
+  }
+
   addTodo(name: string): void {
-    (name)
-    new AddTodoUsecase(todoRepository).call({ name });
+    this.usecaseRunner(AddTodoUsecase, { todoRepository }, { name });
   }
 
   changeHandler() {

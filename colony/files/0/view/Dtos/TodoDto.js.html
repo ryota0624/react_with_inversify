@@ -1,0 +1,15 @@
+<h1>TodoDto.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> TodoDto = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">TodoDto</span><span class="params">(name, id)</span> {</span>
+        <span class="keyword">this</span>.name = name;
+        <span class="keyword">this</span>.id = id;
+    }
+    <span class="keyword">return</span> TodoDto;
+}());
+exports.TodoDto = TodoDto;
+<span class="function"><span class="keyword">function</span> <span class="title">todo2Dto</span><span class="params">(todo)</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">new</span> TodoDto(todo.name.value, todo.id);
+}
+exports.todo2Dto = todo2Dto;
+</code></pre>

@@ -1,0 +1,17 @@
+<h1>addTodo.js</h1>
+<pre><code class="lang-js"><span class="string">"use strict"</span>;
+<span class="keyword">var</span> Todo_1 = require(<span class="string">"../../domain/model/Todo"</span>);
+<span class="keyword">var</span> AddTodoUsecase = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">AddTodoUsecase</span><span class="params">(todoRepository)</span> {</span>
+        <span class="keyword">this</span>.todoRepository = todoRepository;
+    }
+    AddTodoUsecase.prototype.call = <span class="function"><span class="keyword">function</span> <span class="params">(input)</span> {</span>
+        (input);
+        <span class="keyword">var</span> todo = Todo_1.todoFactory({ name: input.name });
+        <span class="keyword">return</span> <span class="keyword">this</span>.todoRepository.store(todo);
+    };
+    <span class="keyword">return</span> AddTodoUsecase;
+}());
+Object.defineProperty(exports, <span class="string">"__esModule"</span>, { value: <span class="literal">true</span> });
+exports.<span class="keyword">default</span> = AddTodoUsecase;
+</code></pre>

@@ -1,17 +1,23 @@
 import { Usecase } from "../share/usecase";
-import Todo, {todoFactory} from "../../domain/model/Todo";
+import Todo, { todoFactory } from "../../domain/model/Todo";
 import { TodoRepository } from "../../domain/repository/TodoRepository";
 
-export interface Input {
+export interface AddTodoUsecaseInput {
   name: string
 }
-export type Output = Promise<boolean>
+export type AddTodoUsecaseOutput = Promise<boolean>
 
-export default class AddTodoUsecase implements Usecase<Input, Output> {
-  constructor(private todoRepository: TodoRepository) {}
-  call(input: Input): Output {
-    (input)
+export interface AddTodoUsecaseDependency {
+  todoRepository: TodoRepository
+}
+
+export default class AddTodoUsecase extends Usecase<AddTodoUsecaseDependency ,AddTodoUsecaseInput, AddTodoUsecaseOutput> {
+  constructor(readonly deps: AddTodoUsecaseDependency) {
+    super();
+  }
+
+  call(input: AddTodoUsecaseInput): AddTodoUsecaseOutput {
     const todo = todoFactory({ name: input.name });
-    return this.todoRepository.store(todo);
+    return this.deps.todoRepository.store(todo);
   }
 }
