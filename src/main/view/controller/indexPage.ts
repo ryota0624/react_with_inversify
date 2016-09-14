@@ -1,11 +1,11 @@
-import GetTodoListUsecase from "../../../usecase/Todo/getTodoList";
-import AddTodoUsecase, {AddTodoUsecaseInput, AddTodoUsecaseOutput} from "../../../usecase/Todo/addTodo";
-import { Controller } from "../controller";
-import TodoRepository, { todoRepository } from "../../../adaptor/repository/TodoRepositoryOnMemory";
+import GetTodoListUsecase from "../../usecase/Todo/getTodoList";
+import AddTodoUsecase, {AddTodoUsecaseInput, AddTodoUsecaseOutput} from "../../usecase/Todo/addTodo";
+import { Controller } from "./controller";
+import TodoRepository, { todoRepository } from "../../adaptor/repository/TodoRepositoryOnMemory";
 import * as React from "react";
 import * as I from "immutable";
-import Todo from "../../../domain/model/Todo";
-import { TodoDto, todo2Dto } from "../../Dtos/TodoDto";
+import Todo from "../../domain/model/Todo";
+import { TodoDto, todo2Dto } from "../Dtos/TodoDto";
 
 interface Props {
 

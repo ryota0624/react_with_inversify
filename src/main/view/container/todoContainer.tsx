@@ -1,8 +1,8 @@
 import * as React from "react";
-import { List } from "./list";
-import { TodoForm } from "./form";
+import { List } from "../component/Todo/list";
+import { TodoForm } from "../component/Todo/form";
 
-import { IndexPageController } from "../../controller/todo/indexPage";
+import { IndexPageController } from "../controller/indexPage";
 
 
 export class Top extends IndexPageController {
