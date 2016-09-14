@@ -13,5 +13,5 @@ const { shallow } = require("enzyme");
 const wrapper = shallow(React.createElement(Top));
 const form = wrapper.childAt(1);
 form.setState({ text: "hoge!" });
-console.log(form)
-console.log(wrapper.html())
+(form)
+(wrapper.html())
