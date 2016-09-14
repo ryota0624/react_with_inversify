@@ -17,7 +17,7 @@ export class TodoForm extends React.Component<{addTodo: (string) => void}, {text
     )
   }
   onChange(event: React.FormEvent<any>) {
-    this.setState({ text: event.target.value });
+    this.setState({ text: (event.target as any).value });
   }
   onSubmit() {
     const { text } = this.state
